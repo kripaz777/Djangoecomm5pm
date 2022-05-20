@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+    <style type="text/css">
+        .carousel-caption {
+    top: 20%;
+    text-align: left;
+}
+p {
+    line-height: 28px;
+}
+.carousel-caption h5 {
+    font-size: 55px;
+}
+.carousel-caption h5 {
+    font-size: 55px;
+}
+.btn-dark {
+    background-color: #b9753f;
+    border-color: #b9753f;
+}
+.btn {
+    border-radius: 0;
+    padding: 8px 22px;
+}
+    </style>
+    
+
+
+
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for slider in sliders %}
+
+      <li data-target="#carouselExampleCaptions" data-slide-to="{{slider.rank}}" class="{{slider.status}}"></li>
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+      {% for slider in sliders %}
+      <div class="carousel-item {{slider.status}}"> <img src="{{slider.image.url}}" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <p>{{slider.name}}</p>
+          <h5>{{slider.description}}</h5>
+          <a href="#" class="btn btn-dark mt-5 dd6"> Contact Us</a> </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a> </div>
+</div>
+
+
+
+
+<div class="container text-center small text-muted mt-4 mb-5">
+    Design by <a href="https://bootstraplily.com/" target="_blank">www.bootstraplily.com</a>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
+
+
+
+    <div class="main">
+      <div class="container">
+        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SALE PRODUCT -->
+          <div class="col-md-12 sale-product">
+            <h2>New Arrivals</h2>
+            <div class="owl-carousel owl-carousel5">
+              {% for new in new_product %}
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{new.image.url}}" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+                      <a href="{{new.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">{{new.name}}</a></h3>
+                  <div class="pi-price">$
+                  {% if new.discounted_price > 0 %}
+                  {{new.discounted_price}}
+                  {% else %}
+                  {{new.price}}
+                {% endif %}</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                  <div class="sticker sticker-{{new.status}}"></div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          <!-- END SALE PRODUCT -->
+        </div>
+        <!-- END SALE PRODUCT & NEW ARRIVALS -->
+
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40 ">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-4">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              {% for cat in categories %}
+              <li class="listcategories -group-item clearfix"><a href="category/{{cat.slug}}"><i class="fa fa-angle-right"></i> {{cat.name}}</a></li>
+              {% endfor %}
+              
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-8">
+            <h2>HOT items</h2>
+            <div class="owl-carousel owl-carousel3">
+              {% for hot in hot_product %}
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{hot.image.url}}" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+                      <a href="{{hot.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">{{hot.name}}</a></h3>
+                  <div class="pi-price">$
+                  {% if hot.discounted_price > 0 %}
+                  {{hot.discounted_price}}
+                  {% else %}
+                  {{hot.price}}
+                {% endif %}</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                  <div class="sticker sticker-{{hot.status}}"></div>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+
+        <!-- BEGIN TWO PRODUCTS & PROMO -->
+        <div class="row margin-bottom-35 ">
+          <!-- BEGIN TWO PRODUCTS -->
+          <div class="col-md-6 two-items-bottom-items">
+            <h2>Sale items</h2>
+            <div class="owl-carousel owl-carousel2">
+              {% for new in sale_product %}
+              <div>
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{{new.image.url}}" class="img-responsive" alt="Berry Lace Dress">
+                    <div>
+                      <a href="{{new.image.url}}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="shop-item.html">{{new.name}}</a></h3>
+                  <div class="pi-price">$
+                  {% if new.discounted_price > 0 %}
+                  {{new.discounted_price}}
+                  {% else %}
+                  {{new.price}}
+                {% endif %}</div>
+                  <a href="javascript:;" class="btn btn-default add2cart">Add to cart</a>
+                  <div class="sticker sticker-{{new.status}}"></div>
+                </div>
+              </div>
+              {% endfor %}
+
+            </div>
+          </div>
+          <!-- END TWO PRODUCTS -->
+          <!-- BEGIN PROMO -->
+          <div class="col-md-6 shop-index-carousel">
+            <div class="content-slider">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  {% for ad in ads %}
+                  <li data-target="#myCarousel" data-slide-to="{{ad.rank}}" class="{{ad.status}}"></li>
+                  {% endfor %}
+                  
+                </ol>
+                <div class="carousel-inner">
+                  {% for ad in ads %}
+                  <div class="item {{ad.status}}">
+                    <img src="{{ad.image.url}}" class="img-responsive" alt="Berry Lace Dress">
+                  </div>
+                  {% endfor %}
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END PROMO -->
+        </div>        
+        <!-- END TWO PRODUCTS & PROMO -->
+      </div>
+    </div>
+
+    <!-- BEGIN BRANDS -->
+    <div class="brands">
+      <div class="container">
+            <div class="owl-carousel owl-carousel6-brands">
+              {% for brand in brands %}
+              <a href="shop-product-list.html"><img src="{{brand.image.url}}" alt="{{brand.name}}" title="{{brand.name}}"></a>
+              {% endfor %}
+              
+            </div>
+        </div>
+    </div>
+    <!-- END BRANDS -->
+
+    <!-- BEGIN STEPS -->
+    <div class="steps-block steps-block-red">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 steps-block-col">
+            <i class="fa fa-truck"></i>
+            <div>
+              <h2>Free shipping</h2>
+              <em>Express delivery withing 3 days</em>
+            </div>
+            <span>&nbsp;</span>
+          </div>
+          <div class="col-md-4 steps-block-col">
+            <i class="fa fa-gift"></i>
+            <div>
+              <h2>Daily Gifts</h2>
+              <em>3 Gifts daily for lucky customers</em>
+            </div>
+            <span>&nbsp;</span>
+          </div>
+          <div class="col-md-4 steps-block-col">
+            <i class="fa fa-phone"></i>
+            <div>
+              <h2>477 505 8877</h2>
+              <em>24/7 customer care available</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END STEPS -->
+
+    <!-- BEGIN PRE-FOOTER -->
+    <div class="pre-footer">
+      <div class="container">
+        <div class="row">
+          <!-- BEGIN BOTTOM ABOUT BLOCK -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>About us</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam sit nonummy nibh euismod tincidunt ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo consequat. </p>
+            <p>Duis autem vel eum iriure dolor vulputate velit esse molestie at dolore.</p>
+          </div>
+          <!-- END BOTTOM ABOUT BLOCK -->
+          <!-- BEGIN BOTTOM INFO BLOCK -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>Information</h2>
+            <ul class="list-unstyled">
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Delivery Information</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Customer Service</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Order Tracking</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Shipping &amp; Returns</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Careers</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="javascript:;">Payment Methods</a></li>
+            </ul>
+          </div>
+          <!-- END INFO BLOCK -->
+
+          <!-- BEGIN TWITTER BLOCK --> 
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2 class="margin-bottom-0">Latest Tweets</h2>
+            <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-tweet-limit="2" data-theme="dark" data-link-color="#57C8EB" data-widget-id="455411516829736961" data-chrome="noheader nofooter noscrollbar noborders transparent">Loading tweets by @keenthemes...</a>      
+          </div>
+          <!-- END TWITTER BLOCK -->
+
+          <!-- BEGIN BOTTOM CONTACTS -->
+          <div class="col-md-3 col-sm-6 pre-footer-col">
+            <h2>Our Contacts</h2>
+            <address class="margin-bottom-40">
+              35, Lorem Lis Street, Park Ave<br>
+              California, US<br>
+              Phone: 300 323 3456<br>
+              Fax: 300 323 1456<br>
+              Email: <a href="mailto:info@metronic.com">info@metronic.com</a><br>
+              Skype: <a href="skype:metronic">metronic</a>
+            </address>
+          </div>
+          <!-- END BOTTOM CONTACTS -->
+        </div>
+        <hr>
+        <div class="row">
+          <!-- BEGIN SOCIAL ICONS -->
+          <div class="col-md-6 col-sm-6">
+            <ul class="social-icons">
+              <li><a class="rss" data-original-title="rss" href="javascript:;"></a></li>
+              <li><a class="facebook" data-original-title="facebook" href="javascript:;"></a></li>
+              <li><a class="twitter" data-original-title="twitter" href="javascript:;"></a></li>
+              <li><a class="googleplus" data-original-title="googleplus" href="javascript:;"></a></li>
+              <li><a class="linkedin" data-original-title="linkedin" href="javascript:;"></a></li>
+              <li><a class="youtube" data-original-title="youtube" href="javascript:;"></a></li>
+              <li><a class="vimeo" data-original-title="vimeo" href="javascript:;"></a></li>
+              <li><a class="skype" data-original-title="skype" href="javascript:;"></a></li>
+            </ul>
+          </div>
+          <!-- END SOCIAL ICONS -->
+          <!-- BEGIN NEWLETTER -->
+          <div class="col-md-6 col-sm-6">
+            <div class="pre-footer-subscribe-box pull-right">
+              <h2>Newsletter</h2>
+              <form action="#">
+                <div class="input-group">
+                  <input type="text" placeholder="youremail@mail.com" class="form-control">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="submit">Subscribe</button>
+                  </span>
+                </div>
+              </form>
+            </div> 
+          </div>
+          <!-- END NEWLETTER -->
+        </div>
+      </div>
+    </div>
+    <!-- END PRE-FOOTER -->
+{% endblock %}
