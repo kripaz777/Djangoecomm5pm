@@ -22,7 +22,7 @@
           <div class="sidebar col-md-3 col-sm-5">
             <ul class="list-group margin-bottom-25 sidebar-menu">
               {% for subcat in subcategories %}
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> {{subcat.name}}</a></li>
+              <li class="list-group-item clearfix"><a href="/subcategory/{{subcat.slug}}"><i class="fa fa-angle-right"></i> {{subcat.name}}</a></li>
               {% endfor %}
               
             </ul>
@@ -100,7 +100,7 @@
             <!-- BEGIN PRODUCT LIST -->
             <div class="row product-list">
               <!-- PRODUCT ITEM START -->
-              {% for cat in cat_products %}
+              {% for cat in subcat_products %}
               <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="product-item">
                   <div class="pi-img-wrapper">

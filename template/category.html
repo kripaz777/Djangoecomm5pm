@@ -22,7 +22,7 @@
           <div class="sidebar col-md-3 col-sm-5">
             <ul class="list-group margin-bottom-25 sidebar-menu">
               {% for subcat in subcategories %}
-              <li class="list-group-item clearfix"><a href="shop-product-list.html"><i class="fa fa-angle-right"></i> {{subcat.name}}</a></li>
+              <li class="list-group-item clearfix"><a href="/subcategory/{{subcat.slug}}"><i class="fa fa-angle-right"></i> {{subcat.name}}</a></li>
               {% endfor %}
               
             </ul>

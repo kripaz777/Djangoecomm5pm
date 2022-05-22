@@ -26,7 +26,7 @@ class CategoryView(Base):
 	def get(self,request,slug):
 		cat_id = Category.objects.get(slug = slug).id
 		self.views['cat_products'] = Product.objects.filter(category_id=cat_id)
-		self.views['subcategories']  = SubCategory.objects.all()
+		self.views['subcategories']  = SubCategory.objects.filter(category_id = cat_id)
 
 		return render(request,'category.html',self.views)
 
@@ -40,6 +40,12 @@ class SubCategoryView(Base):
 		return render(request,'subcategory.html',self.views)
 
 
+class SearchView(Base):
+	def get(self,request):
+		if request.method == "GET":
+			query = request.GET['query']
+			self.views['search_product'] = Product.objects.filter(name__icontains = query)
 
+		return render(request,'shop-search-result.html',self.views)
 
 
