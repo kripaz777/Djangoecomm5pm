@@ -87,7 +87,7 @@ p {
                       <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                     </div>
                   </div>
-                  <h3><a href="shop-item.html">{{new.name}}</a></h3>
+                  <h3><a href="details/{{new.slug}}">{{new.name}}</a></h3>
                   <div class="pi-price">$
                   {% if new.discounted_price > 0 %}
                   {{new.discounted_price}}
@@ -131,7 +131,7 @@ p {
                       <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                     </div>
                   </div>
-                  <h3><a href="shop-item.html">{{hot.name}}</a></h3>
+                  <h3><a href="details/{{hot.slug}}">{{hot.name}}</a></h3>
                   <div class="pi-price">$
                   {% if hot.discounted_price > 0 %}
                   {{hot.discounted_price}}
@@ -166,7 +166,7 @@ p {
                       <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                     </div>
                   </div>
-                  <h3><a href="shop-item.html">{{new.name}}</a></h3>
+                  <h3><a href="details/{{new.slug}}">{{new.name}}</a></h3>
                   <div class="pi-price">$
                   {% if new.discounted_price > 0 %}
                   {{new.discounted_price}}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views import View
 
 from .models import *
@@ -48,4 +48,39 @@ class SearchView(Base):
 
 		return render(request,'shop-search-result.html',self.views)
 
+class ProductDetailView(Base):
+	def get(self,request,slug):
+		self.views['product_view'] = Product.objects.filter(slug = slug)
 
+		return render(request,'shop-item.html',self.views)
+
+
+from django.contrib.auth.models import User
+from django.contrib import messages
+def signup(request):
+	if request.method == "POST":
+		username = request.POST['username']
+		email = request.POST['email']
+		password = request.POST['password']
+		cpassword = request.POST['cpassword']
+		if password == cpassword:
+			if User.objects.filter(username = username).exists():
+				messages.error(request,'The username is already used.')
+				return redirect('/signup')
+
+			elif User.objects.filter(email = email).exists():
+				messages.error(request,'The email is already used.')
+				return redirect('/signup')
+
+			else:
+				user = User.objects.create(
+					username = username,
+					email = email,
+					password = password
+					)
+				user.save()
+				return redirect('/')
+		else:
+			messages.error(request,'The password doest not match.')
+			return redirect('/signup')
+	return render(request,'signup.html')

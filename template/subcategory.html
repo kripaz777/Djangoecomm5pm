@@ -110,7 +110,7 @@
                       <a href="#product-pop-up" class="btn btn-default fancybox-fast-view">View</a>
                     </div>
                   </div>
-                  <h3><a href="shop-item.html">{{cat.name}}</a></h3>
+                  <h3><a href="/details/{{cat.slug}}">{{cat.name}}</a></h3>
                   <div class="pi-price">${% if cat.discounted_price > 0 %}
                   {{cat.discounted_price}}
                   {% else %}
