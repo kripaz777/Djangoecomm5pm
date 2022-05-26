@@ -6,7 +6,9 @@ from .models import *
 
 class Base(View):
 	views = {}
-	
+	views['categories'] = Category.objects.all()
+	views['subcategories']  = SubCategory.objects.all()
+
 
 class HomeView(Base):
 	def get(self,request):
